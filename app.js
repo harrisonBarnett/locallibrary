@@ -7,7 +7,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index'); // route handling for home page
 var usersRouter = require('./routes/users'); // route handling for users page
-var aboutRouter = require('./routes/about');
 var catalogRouter = require('./routes/catalog')
 
 var app = express(); // instantiate the app
@@ -34,7 +33,6 @@ app.use(express.static(path.join(__dirname, 'public'))); // tells express to use
 
 app.use('/', indexRouter); // extends API for route handling for home page
 app.use('/users', usersRouter); // extends API for route handling for users page
-app.use('/about', aboutRouter);
 app.use('/catalog', catalogRouter)
 
 // catch 404 and forward to error handler
