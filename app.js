@@ -22,7 +22,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // // VIEW ENGINE SETUP
 // tells express to use the __dirname/views directory to serve view templates as .hbs files
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'pug');
 
 // // ADDING MIDDLEWARE IN THE REQUEST HANDLING CHAIN
 app.use(logger('dev'));

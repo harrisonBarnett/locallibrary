@@ -1,13 +1,33 @@
 const BookInstance = require('../models/bookinstance')
+const Book = require('../models/book')
 
 // display ALL BOOK INSTANCES on GET
 exports.bookinstance_list = (req, res) => {
-    res.send('TODO // return ALL BOOK INSTANCES')
+
+    BookInstance.find()
+        .populate('book')
+        .exec(function (err, list_bookinstances) {
+            if(err) {return next(err)}
+            res.render('bookinstance_list', {title: 'Book Instance List', bookinstance_list: list_bookinstances})
+        })
+
 }
 
 // display a SINGLE BOOK INSTANCE DETAIL based on _id on GET
 exports.bookinstance_detail = (req, res) => {
-    res.send('TODO // return a SINGLE BOOK INSTANCE DETAIL' + req.params.id)
+
+    BookInstance.findById(req.params.id)
+        .populate('book')
+        .exec(function(err, bookinstance){
+            if(err) {return next(err)}
+            if(bookinstance == null) {
+                var err = new Error('Book copy not found :(')
+                err.status(404)
+                return next(err)
+            }
+            res.render('bookinstance_detail', {title: 'Copy: ' + bookinstance.book.title, bookinstance: bookinstance})
+        })
+
 }
 
 // display CREATE BOOK INSTANCE FORM on GET

@@ -17,8 +17,8 @@ const BookSchema = new Schema(
 )
 
 // book URL virtual
-BookSchema.virtual('url').get(()=> {
-    return '/catalog/book' + this._id
+BookSchema.virtual('url').get(function(){
+    return '/catalog/book/' + this._id
 })
 
 // export an instantiated 'Book' model
